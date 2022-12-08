@@ -1,19 +1,20 @@
-package com.pratik.billpayapp.model;
+package com.pratik.billpayapp.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Getter
 @Setter
 @Entity
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Wallet {
     @Id
-    private String walletID;
     private String userID;
     private double amount;
 }

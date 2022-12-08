@@ -1,6 +1,7 @@
-package com.pratik.billpayapp.model;
+package com.pratik.billpayapp.dto;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
@@ -9,12 +10,9 @@ import javax.persistence.Id;
 @Getter
 @Setter
 @Entity
-public class Bill {
-
-
+@NoArgsConstructor
+public class Biller {
     @Id
     private String id;
-    private String billerID;
-    private double amount;
-    private boolean isPaid;
+    private String name;
 }

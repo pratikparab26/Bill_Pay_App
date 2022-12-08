@@ -1,6 +1,6 @@
 package com.pratik.billpayapp.repository;
 
-import com.pratik.billpayapp.model.Wallet;
+import com.pratik.billpayapp.dto.Wallet;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
