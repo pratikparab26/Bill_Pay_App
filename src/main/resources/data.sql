@@ -1,0 +1,14 @@
+INSERT INTO Users VALUES ('abc@gmail.com');
+INSERT INTO Users VALUES ('jks@gmail.com');
+--INSERT INTO Users VALUES ('test@gmail.com');
+
+INSERT INTO BILLER VALUES ('1','Biller1');
+INSERT INTO BILLER VALUES ('2','Biller2');
+INSERT INTO BILLER VALUES ('3','Biller3');
+
+INSERT INTO BILL VALUES ('B101','1',20.00,false);
+INSERT INTO BILL VALUES ('B102','1',30.00,false);
+INSERT INTO BILL VALUES ('B103','2',40.00,false);
+
+--INSERT INTO WALLET VALUES ('w1','abc@gmail.com',200.00);
+--INSERT INTO WALLET VALUES ('w2','jks@gmail.com',400.00);
