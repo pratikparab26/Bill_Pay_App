@@ -25,13 +25,11 @@ public class BillService {
         List<Bill> bills = billRepository.findByUserIDAndIsPaid(userID,false);
         if(!CollectionUtils.isEmpty(bills)){
             List<String> billerIds = bills.stream()
-                    .map(bill -> bill.getBillerID())
+                    .map(Bill::getBillerID)
                     .distinct()
                     .collect(Collectors.toList());
 
-            List<Biller> billers = billerRepository.findAllByidIn(billerIds);
-
-            return billers;
+            return billerRepository.findAllByidIn(billerIds);
         } else{
             return new ArrayList<>(0);
         }

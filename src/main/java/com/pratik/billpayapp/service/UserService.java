@@ -15,11 +15,7 @@ public class UserService {
 
     public boolean isRegistered(String emailID){
         Optional<Users> user = userRepository.findById(emailID);
-        if(user.isPresent()){
-            return true;
-        } else{
-            return false;
-        }
+        return user.isPresent();
     }
 
     public void register(String emailID){
@@ -27,6 +23,11 @@ public class UserService {
     }
 
     public Users getUser(String emailID){
-        return userRepository.findById(emailID).get();
+        Optional<Users> user = userRepository.findById(emailID);
+        if(user.isPresent()){
+            return user.get();
+        } else{
+            throw new RuntimeException(emailID +" is not registered");
+        }
     }
 }

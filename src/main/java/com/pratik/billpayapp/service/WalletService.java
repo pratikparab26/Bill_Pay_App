@@ -46,7 +46,7 @@ public class WalletService {
 
     public double useWallet(String fromUserID,String toUserID,double amountToBeDebited){
         Optional<Wallet> fromWallet = walletRepository.findById(fromUserID);
-        double newUSerBalance =0.0;
+        double newUSerBalance ;
         if(fromWallet.isPresent()){
             if( amountToBeDebited>fromWallet.get().getAmount()){
                 throw new RuntimeException("Insufficient balance, Kindly recharge youe wallet!!");
