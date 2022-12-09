@@ -4,23 +4,20 @@ import com.pratik.billpayapp.dto.Bill;
 import com.pratik.billpayapp.dto.Biller;
 import com.pratik.billpayapp.repository.BillRepository;
 import com.pratik.billpayapp.repository.BillerRepository;
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.internal.matchers.Any;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 class BillServiceTest {
@@ -67,6 +64,8 @@ class BillServiceTest {
         when(billRepository.findByBillerIDAndUserIDAndIsPaid(Mockito.anyString(),Mockito.eq("abc@gmail.com"),Mockito.eq(false))).thenReturn(pendingBillList);
         when(billRepository.findByUserIDAndIsPaid(Mockito.anyString(),Mockito.eq(true))).thenReturn(paidBillList);
         when(billerRepository.findAllByidIn(Mockito.anyList())).thenReturn(billers);
+        doNothing().when(billRepository).markBillAsPaid(Mockito.anyString());
+        when(billRepository.findByBillerIDAndUserID(anyString(),anyString())).thenReturn(paidBillList);
     }
 
 
@@ -86,6 +85,16 @@ class BillServiceTest {
     void givenUserID_WhenGetPendingBillsOfBillerisCalled_ThenPendingBillisReturned(){
         List<Bill> result = testClass.getPendingBillsOfBiller("b1","abc@gmail.com");
         assertTrue(!CollectionUtils.isEmpty(result));
+    }
+
+    @Test
+    void givenValidBillID_WhenMarkBillAsPaid_thenBillISMarkedAsPAid(){
+        testClass.markBillAsPaid("b1");
+    }
+
+    @Test
+    void givenValidBillID_WhengetAllBillsOfBiller_thenBillISMarkedAsPAid(){
+        assertFalse(CollectionUtils.isEmpty(testClass.getAllBillsOfBiller("abc@gmail.com","B1")));
     }
 
 
