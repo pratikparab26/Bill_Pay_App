@@ -28,7 +28,7 @@ public class BillsController {
         return billService.getPendingBillersOfUser(userID);
     }
 
-    @GetMapping("/users/{userID}/Billers/{billerID}")
+    @GetMapping("/users/{userID}/pending/Billers/{billerID}")
     public List<Bill> getPendingBillsForUserAndBiller(@PathVariable String userID, @PathVariable String billerID){
         return billService.getPendingBillsOfBiller(billerID,userID);
     }
